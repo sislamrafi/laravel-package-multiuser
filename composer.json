@@ -1,0 +1,30 @@
+{
+    "name": "sislamrafi/multiuser",
+    "description": "Manage different types of users in web",
+    "type": "library",
+    "license": "MIT",
+    "version": "1.0.1",
+    "authors": [
+        {
+            "name": "sislamrafi",
+            "email": "sislamrafi333@gmail.com"
+        }
+    ],
+    "minimum-stability": "dev",
+    "require": {},
+    "autoload": {
+        "psr-4": {
+            "Sislamrafi\\Multiuser\\":"src/"
+        }
+    },
+    "extra": {
+        "laravel":{
+            "providers":[
+                "Sislamrafi\\Multiuser\\UsersServiceProvider"
+            ],
+            "aliases":[
+
+            ]
+        }
+    }
+}
