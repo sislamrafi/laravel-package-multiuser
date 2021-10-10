@@ -1,7 +1,7 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-	<base href="/vendor/sislamrafi/admin/"/>
+	<base href="/vendor/sislamrafi/multi-user/"/>
 	<title>Admin Login</title>
 	<meta charset="UTF-8">
 	<meta name="viewport" content="width=device-width, initial-scale=1">
