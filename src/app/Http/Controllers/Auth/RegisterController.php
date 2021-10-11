@@ -2,13 +2,13 @@
 
 namespace  Sislamrafi\Multiuser\app\Http\Controllers\Auth;
 
-use Sislamrafi\Admin\app\Http\Controllers\Controller;
+use Sislamrafi\Multiuser\app\Http\Controllers\Controller;
 use App\Providers\RouteServiceProvider;
 use Illuminate\Foundation\Auth\RegistersUsers;
 use Illuminate\Support\Facades\Hash;
 use Illuminate\Support\Facades\Validator;
 
-use Sislamrafi\Admin\app\Models\Admin;
+use App\Models\User;
 use Illuminate\Support\Facades\Auth;
 
 class RegisterController extends Controller
@@ -31,7 +31,7 @@ class RegisterController extends Controller
      *
      * @var string
      */
-    protected $redirectTo = 'admin';
+    protected $redirectTo = 'homme';
 
     /**
      * Create a new controller instance.
@@ -40,7 +40,7 @@ class RegisterController extends Controller
      */
     public function __construct()
     {
-        $this->middleware('guest:admin');
+        $this->middleware('guest');
     }
 
     /**
@@ -49,11 +49,13 @@ class RegisterController extends Controller
      * @param  array  $data
      * @return \Illuminate\Contracts\Validation\Validator
      */
-    public function showRegistrationForm() {
-        if(config('admin.accept_register')=='true')
-            return view ('admin::register', ['url' => 'admin']);
-        else 
+    public function showRegistrationForm()
+    {
+        if (config('admin.accept_register')=='true') {
+            return view('admin::register', ['url' => 'admin']);
+        } else {
             return "You are not permitted to create user";
+        }
     }
 
     protected function validator(array $data)
@@ -73,22 +75,10 @@ class RegisterController extends Controller
      */
     protected function create(array $data)
     {
-        if(config('admin.accept_register')=='true')
-            return Admin::create([
+        return User::create([
                 'name' => $data['name'],
                 'email' => $data['email'],
                 'password' => Hash::make($data['password']),
             ]);
-        else 
-            return NULL;
-    }
-
-    protected function guard()
-    {
-        return Auth::guard('admin');
-    }
-    protected function broker()
-    {
-        return Password::broker('admins');
     }
 }
