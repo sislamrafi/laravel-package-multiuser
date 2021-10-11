@@ -88,7 +88,6 @@ class UsersServiceProvider extends ServiceProvider
         $router = $this->app->make(Router::class);
         //$router->aliasMiddleware('auth-admin', \Sislamrafi\Multiuser\app\Http\Middlewares\AdminAuth::class);
         $router->aliasMiddleware('user-verified', \Sislamrafi\Multiuser\app\Http\Middlewares\AdminEmailVerify::class);
-        
         //$router->pushMiddlewareToGroup('admin', \Sislamrafi\Admin\app\Http\Middlewares\AdminAuth::class);
     }
 

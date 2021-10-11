@@ -1,7 +1,7 @@
 @extends('multiuser::layouts.auth')
 
 @section('form')
-    <form class="login100-form validate-form" method="POST" action="{{ route('admin.register') }}">
+    <form class="login100-form validate-form" method="POST" action="{{ route('multiuser.register') }}">
         @csrf
         <span class="login100-form-title">
             Admin Register
@@ -66,13 +66,13 @@
             <span class="txt1">
                 Forgot
             </span>
-            <a class="txt2" href="{{ route('admin.password.request') }}">
+            <a class="txt2" href="{{ route('multiuser.password.request') }}">
                 Username / Password?
             </a>
         </div>
 
         <div class="text-center p-t-136">
-            <a class="txt2" href="{{ route('admin.login') }}">
+            <a class="txt2" href="{{ route('multiuser.login') }}">
                 Login to your Account
                 <i class="fa fa-long-arrow-right m-l-5" aria-hidden="true"></i>
             </a>

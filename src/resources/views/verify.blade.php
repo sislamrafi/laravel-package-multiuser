@@ -1,7 +1,7 @@
 @extends('multiuser::layouts.auth')
 
 @section('form')
-    <form class="login100-form validate-form" method="POST" action="{{ route('admin.verification.resend') }}">
+    <form class="login100-form validate-form" method="POST" action="{{ route('multiuser.verification.resend') }}">
         @csrf
         <span class="login100-form-title">
             Verify your account.
@@ -29,7 +29,7 @@
 
 
         <div class="text-center p-t-60">
-            <a class="txt2" href="{{ route('admin.login') }}">
+            <a class="txt2" href="{{ route('multiuser.login') }}">
                 Login to your Account
                 <i class="fa fa-long-arrow-right m-l-5" aria-hidden="true"></i>
             </a>
