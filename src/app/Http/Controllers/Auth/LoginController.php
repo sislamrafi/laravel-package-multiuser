@@ -69,7 +69,7 @@ class LoginController extends Controller
         if ($e = $this->guard('users')->attempt(['email' => $request->email, 'password' => $request->password], $request->get('remember'))) {
             
             //return redirect()->intended(route(config('multiuser.roles')[$request->user]));
-            return redirect()->route(config('multiuser.roles')[$request->user]['redirect']);
+            return redirect()->intended(route(config('multiuser.roles')[$request->user]['redirect']));
         }
         return back()
         ->withInput($request->only('email', 'remember'))
