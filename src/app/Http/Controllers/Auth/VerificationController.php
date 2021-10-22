@@ -47,7 +47,7 @@ class VerificationController extends Controller
     {
         //return $this->redirectPath();
         return $request->user()->hasVerifiedEmail()
-                        ? redirect($this->redirectPath())
+                        ? redirect(route(config('multiuser.roles')[$request->user]['redirect']))
                         : view("multiuser::verify");
     }
 
