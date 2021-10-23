@@ -10,7 +10,7 @@
 
         <div class="text-center p-t-12 m-t-12 alert alert-success">
             <span class="txt1">
-                A fresh verification link has been sent to your email address.
+                A fresh verification link has been sent to your email address: {{ Auth::user()->email }}
             </span>
         </div>
 
@@ -28,11 +28,26 @@
         </div>
 
 
-        <div class="text-center p-t-60">
+        <div class="text-center p-t-40">
             <a class="txt2" href="{{ route('multiuser.login') }}">
                 Login to your Account
                 <i class="fa fa-long-arrow-right m-l-5" aria-hidden="true"></i>
             </a>
+
         </div>
+
+        <div class="text-center p-t-10">
+            <a class="txt2" href=""
+                onclick="event.preventDefault(); document.getElementById('logout-form').submit();">
+                {{ __('Logout') }}
+            </a>
+    
+        </div>
+    </form>
+@endsection
+
+@section('external-script')
+    <form id="logout-form" action="{{ route('multiuser.logout') }}" method="POST" class="d-none">
+        @csrf
     </form>
 @endsection

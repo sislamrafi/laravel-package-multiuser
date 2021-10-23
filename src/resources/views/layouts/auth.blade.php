@@ -34,6 +34,7 @@
 				@yield('form')
 			</div>
 		</div>
+		<div>@yield('external-script')</div>
 	</div>
 	
 	
