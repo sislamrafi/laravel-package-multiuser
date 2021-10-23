@@ -26,7 +26,9 @@ class VerificationController extends Controller
     |
     */
 
-    use VerifiesEmails;
+    use VerifiesEmails {
+        verify as originalVerify;
+    }
 
     /**
      * Where to redirect users after verification.
@@ -40,6 +42,8 @@ class VerificationController extends Controller
      *
      * @return void
      */
+    
+
     public function __construct()
     {
         $this->middleware('auth');
@@ -52,15 +56,37 @@ class VerificationController extends Controller
 
     public function show(Request $request)
     {
-        //return $this->redirectPath();
+        if(auth()->check()){
+            foreach(config('multiuser.roles') as $key=>$val){
+                if(auth()->user()->hasRole($key)){
+                    $this->redirectTo = route($val['redirect']);
+                    break;
+                }
+            }
+        }else{
+            $this->redirectTo = '/';
+        }
+
         return $request->user()->hasVerifiedEmail()
-                        ? redirect( route(config('multiuser.roles')[$request->user]['redirect']) )
+                        ? redirect( $this->redirectTo )
                         : view("multiuser::verify");
+    }
+
+    public function verifyXX(Request $request)
+    {
+        $request->setUserResolver(function () use ($request) {
+            return User::findOrFail($request->route('id'));
+        });
+        return $this->originalVerify($request);
     }
 
     public function verify(Request $request)
     {
         $user = User::find($request->route('id'));
+
+        if (!auth()->check()) {
+            //auth()->loginUsingId($request->route('id'));
+        }
 
         foreach(config('multiuser.roles') as $key=>$val){
             if($user->hasRole($key)){
