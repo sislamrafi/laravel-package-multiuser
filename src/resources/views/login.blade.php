@@ -14,7 +14,7 @@
 
 
 
-            <input id="email" type="text" placeholder="Email" class="input100" name="email" value="{{ old('email') }}" required
+            <input id="emaili" type="text" placeholder="Email/Phone" class="input100" name="email" value="{{ old('email') }}" required
                 autocomplete="email">
 
             <span class="focus-input100"></span>
