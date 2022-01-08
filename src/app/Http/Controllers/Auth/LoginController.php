@@ -61,7 +61,7 @@ class LoginController extends Controller
     public function login(Request $request)
     {
         $valodator =  $this->validate($request, [
-            'email'   => 'required|email|exists:users,email',
+            'email'   => 'required',
             'password' => 'required|min:6',
             'user'=>'required',
         ]);
