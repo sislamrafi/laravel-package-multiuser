@@ -66,7 +66,16 @@ class LoginController extends Controller
             'user'=>'required',
         ]);
 
-        if ($e = $this->guard('users')->attempt(['email' => $request->email, 'password' => $request->password], $request->get('remember'))) {
+        $field = 'email';
+        if(is_numeric($request->get('email'))){
+            $field = 'phone';
+        }elseif (filter_var($request->get('email'), FILTER_VALIDATE_EMAIL)) {
+            $field = 'email';
+        }else{
+            $field = 'username';
+        }
+
+        if ($e = $this->guard('users')->attempt([$field => $request->email, 'password' => $request->password], $request->get('remember'))) {
             
             //return redirect()->intended(route(config('multiuser.roles')[$request->user]));
             return redirect()->intended(route(config('multiuser.roles')[$request->user]['redirect']));
